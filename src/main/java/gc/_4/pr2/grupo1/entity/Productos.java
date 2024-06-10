@@ -1,16 +1,24 @@
 package gc._4.pr2.grupo1.entity;
 
+
+
+import java.util.HashSet;
+import java.util.Set;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Productos {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long Productos_id;
+	
 	private String nombre;
 	private String Descripción;
 	private int Precio;
@@ -18,7 +26,20 @@ public class Productos {
 	private String categoría;
 	private String Ingredientes;
 	
+
+	@ManyToMany
+	@JoinTable(name = "Productos_Pedidos",	
+			joinColumns = {@JoinColumn(name = "Pedidos_id")},
+			inverseJoinColumns = {@JoinColumn(name = "Productos_id")})
+	private Set<Pedidos> Lista_Pedidos = new HashSet<>();
+
 	
+	public Long getProductos_id() {
+		return Productos_id;
+	}
+	public void setProductos_id(Long productos_id) {
+		Productos_id = productos_id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
