@@ -1,9 +1,13 @@
 package gc._4.pr2.grupo1.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Pedidos {
@@ -14,6 +18,9 @@ public class Pedidos {
 	private String FechyHoraDeEntrega;
 	private String Estado;
 	private String TiempoEstimado;
+	
+	@ManyToMany(mappedBy = "pedidos")
+	private Set<Mesa> mesas = new HashSet<>();
 
 	
 	private String ListDeProductos;
