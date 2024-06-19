@@ -17,7 +17,7 @@ public class Productos {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long Productos_id;
+	private Long id;
 	
 	private String nombre;
 	private String Descripción;
@@ -34,11 +34,13 @@ public class Productos {
 	private Set<Pedidos> Lista_Pedidos = new HashSet<>();
 
 	
-	public Long getProductos_id() {
-		return Productos_id;
+	
+	
+	public Long getId() {
+		return id;
 	}
-	public void setProductos_id(Long productos_id) {
-		Productos_id = productos_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;

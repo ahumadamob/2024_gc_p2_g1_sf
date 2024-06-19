@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToMany;
 public class Pedidos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long Pedidos_id;
+	private Long id;
 	
 	private String FechyHoraDePedido;
 	private String FechyHoraDeEntrega;
@@ -25,11 +25,12 @@ public class Pedidos {
 
 
 	
-	public Long getPedidos_id() {
-		return Pedidos_id;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setPedidos_id(Long pedidos_id) {
-		Pedidos_id = pedidos_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getFechyHoraDePedido() {
 		return FechyHoraDePedido;
