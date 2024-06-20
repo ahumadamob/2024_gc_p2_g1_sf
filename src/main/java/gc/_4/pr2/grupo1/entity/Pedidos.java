@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pedidos {
@@ -14,6 +15,8 @@ public class Pedidos {
 	private String FechyHoraDeEntrega;
 	private String Estado;
 	private String TiempoEstimado;
+	@OneToOne(mappedBy="pedidos")
+	private Factura factura;
 
 	
 	private String ListDeProductos;
