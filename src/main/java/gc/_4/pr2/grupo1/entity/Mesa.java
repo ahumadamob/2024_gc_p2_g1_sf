@@ -1,10 +1,15 @@
 package gc._4.pr2.grupo1.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -17,6 +22,14 @@ public class Mesa {
 	@ManyToOne
 	@JoinColumn(name="empleado_id")
 	private Empleado empleado;
+	
+	@ManyToMany
+	@JoinTable (
+			name = "Mesa_Pedidos",
+			joinColumns = @JoinColumn(name = "Mesa_Id"),
+			inverseJoinColumns = @JoinColumn(name = "Pedidos_Id")		
+			)
+	private Set<Pedidos> pedidos = new HashSet<>(); 
 	
 	
 	public int getCapacidad() {

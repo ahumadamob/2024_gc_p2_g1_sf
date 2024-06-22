@@ -18,6 +18,9 @@ public class Pedidos {
 	private String FechyHoraDeEntrega;
 	private String Estado;
 	private String TiempoEstimado;
+	
+	@ManyToMany(mappedBy = "pedidos")
+	private Set<Mesa> mesas = new HashSet<>();
 
 
 	@ManyToMany(mappedBy = "Lista_Pedidos")
