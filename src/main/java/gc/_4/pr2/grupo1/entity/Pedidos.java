@@ -7,13 +7,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Pedidos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	private String FechyHoraDePedido;
 	private String FechyHoraDeEntrega;
 	private String Estado;
@@ -24,13 +24,22 @@ public class Pedidos {
 	private Set<Productos>  Lista_Productos = new HashSet<>();
 
 
+    @ManyToOne
+    private Empleado empleado;
+	private String ListDeProductos;
 	
-	
+	private String ListDeProductos;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getListDeProductos() {
+		return ListDeProductos;
+	}
+	public void setListDeProductos(String listDeProductos) {
+		ListDeProductos = listDeProductos;
 	}
 	public String getFechyHoraDePedido() {
 		return FechyHoraDePedido;
@@ -56,7 +65,13 @@ public class Pedidos {
 	public void setTiempoEstimado(String tiempoEstimado) {
 		TiempoEstimado = tiempoEstimado;
 	}
+	
+	public Empleado getEmpleado() {
+        return empleado;
+    }
 
-
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
 
 }
