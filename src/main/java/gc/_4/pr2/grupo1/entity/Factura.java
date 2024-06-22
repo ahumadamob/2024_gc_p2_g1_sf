@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -11,10 +12,13 @@ public class Factura {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	private Long id; 
 	private String detalle;
 	private int total;
 	private String FechaYHora;
+	@OneToOne
+	private Pedidos pedidos;
 	
 	@ManyToOne
 	private Empleado empleado;

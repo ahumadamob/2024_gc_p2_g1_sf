@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pedidos {
@@ -18,6 +19,8 @@ public class Pedidos {
 	private String FechyHoraDeEntrega;
 	private String Estado;
 	private String TiempoEstimado;
+	@OneToOne(mappedBy="pedidos")
+	private Factura factura;
 	
 	@ManyToMany(mappedBy = "pedidos")
 	private Set<Mesa> mesas = new HashSet<>();
