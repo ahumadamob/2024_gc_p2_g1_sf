@@ -1,6 +1,6 @@
 package gc._4.pr2.grupo1.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,9 +19,9 @@ public class Empleado {
 	private String turno;
 	private String cargo;
 	private String contacto;
-	@OneToMany (mappedBy="empleado")
-	private Set<Mesa> mesa;
 	
+	@OneToMany(mappedBy = "empleado")
+	private List<Factura> factura;
     @OneToMany(mappedBy = "empleado")
     private List<Pedidos> pedidos;
 	
@@ -49,13 +49,6 @@ public class Empleado {
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
-	public List<Pedidos> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedidos> pedidos) {
-        this.pedidos = pedidos;
-    }
 	
 	
 }
