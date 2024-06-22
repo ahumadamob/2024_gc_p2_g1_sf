@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Pedidos {
@@ -22,6 +23,9 @@ public class Pedidos {
 	@ManyToMany(mappedBy = "pedidos")
 	private Set<Mesa> mesas = new HashSet<>();
 
+    @ManyToOne
+    private Empleado empleado;
+	private String ListDeProductos;
 	
 	private String ListDeProductos;
 	public Long getId() {
@@ -60,7 +64,13 @@ public class Pedidos {
 	public void setTiempoEstimado(String tiempoEstimado) {
 		TiempoEstimado = tiempoEstimado;
 	}
+	
+	public Empleado getEmpleado() {
+        return empleado;
+    }
 
-
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
 
 }
