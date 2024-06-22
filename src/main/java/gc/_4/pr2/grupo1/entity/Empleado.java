@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Empleado {
@@ -21,6 +22,8 @@ public class Empleado {
 	
 	@OneToMany(mappedBy = "empleado")
 	private List<Factura> factura;
+    @OneToMany(mappedBy = "empleado")
+    private List<Pedidos> pedidos;
 	
 	public String getNombre() {
 		return nombre;
