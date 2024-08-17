@@ -34,6 +34,7 @@ public class Pedidos {
 
 
     @ManyToOne
+    @JoinColumn(name="empleado_id")
     private Empleado empleado;
 	
 	
