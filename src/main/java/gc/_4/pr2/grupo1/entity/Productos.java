@@ -29,9 +29,9 @@ public class Productos {
 
 	@ManyToMany
 	@JoinTable(name = "Productos_Pedidos",	
-			joinColumns = {@JoinColumn(name = "Pedidos_id")},
-			inverseJoinColumns = {@JoinColumn(name = "Productos_id")})
-	private Set<Pedidos> Lista_Pedidos = new HashSet<>();
+			joinColumns = {@JoinColumn(name = "productos_id")},
+			inverseJoinColumns = {@JoinColumn(name = "pedidos_id")})
+	private Set<Pedidos> Lista_PedidosP = new HashSet<>();
 
 	
 	

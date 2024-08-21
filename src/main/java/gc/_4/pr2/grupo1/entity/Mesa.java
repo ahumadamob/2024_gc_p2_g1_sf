@@ -26,10 +26,10 @@ public class Mesa {
 	@ManyToMany
 	@JoinTable (
 			name = "Mesa_Pedidos",
-			joinColumns = @JoinColumn(name = "Mesa_Id"),
-			inverseJoinColumns = @JoinColumn(name = "Pedidos_Id")		
+			joinColumns = {@JoinColumn(name = "Mesa_Id")},
+			inverseJoinColumns = {@JoinColumn(name = "Pedidos_Id")}		
 			)
-	private Set<Pedidos> pedidos = new HashSet<>(); 
+	private Set<Pedidos> Lista_PedidosM = new HashSet<>(); 
 	
 	
 	public int getCapacidad() {

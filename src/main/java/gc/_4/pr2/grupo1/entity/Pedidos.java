@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -15,38 +16,35 @@ public class Pedidos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
 	private String FechyHoraDePedido;
 	private String FechyHoraDeEntrega;
 	private String Estado;
 	private String TiempoEstimado;
+	
 	@OneToOne(mappedBy="pedidos")
 	private Factura factura;
 	
-	@ManyToMany(mappedBy = "pedidos")
-	private Set<Mesa> mesas = new HashSet<>();
+	@ManyToMany(mappedBy = "Lista_PedidosM")
+	private Set<Mesa> Lista_Mesas = new HashSet<>();
 
 
-	@ManyToMany(mappedBy = "Lista_Pedidos")
+	@ManyToMany(mappedBy = "Lista_PedidosP")
 	private Set<Productos>  Lista_Productos = new HashSet<>();
 
 
     @ManyToOne
+    @JoinColumn(name="empleado_id")
     private Empleado empleado;
-	private String ListDeProductos;
 	
-	private String ListDeProductos;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getListDeProductos() {
-		return ListDeProductos;
-	}
-	public void setListDeProductos(String listDeProductos) {
-		ListDeProductos = listDeProductos;
-	}
+	
 	public String getFechyHoraDePedido() {
 		return FechyHoraDePedido;
 	}
