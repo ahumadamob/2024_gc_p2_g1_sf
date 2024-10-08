@@ -4,7 +4,7 @@ import java.util.List;
 
 import gc._4.pr2.grupo1.entity.Mediodepago;
 
-public interface MediodepagoService {
+public interface IMediodepagoService {
 	
 	public List<Mediodepago>mostrarTodos();
 	public Mediodepago mostrarPorId(Long id);

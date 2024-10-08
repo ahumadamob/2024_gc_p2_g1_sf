@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import gc._4.pr2.grupo1.entity.Empleado;
 import gc._4.pr2.grupo1.repository.EmpleadoRepository;
-import gc._4.pr2.grupo1.service.EmpleadoService;
+import gc._4.pr2.grupo1.service.IEmpleadoService;
 
 @Service
-public class EmpleadoServiceImp implements EmpleadoService {
+public class EmpleadoServiceImp implements IEmpleadoService {
 	
 	@Autowired
 	private EmpleadoRepository repo;

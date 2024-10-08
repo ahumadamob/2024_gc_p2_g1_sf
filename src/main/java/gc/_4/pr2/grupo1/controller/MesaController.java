@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import gc._4.pr2.grupo1.entity.Mesa;
-import gc._4.pr2.grupo1.service.jpa.MesaServiceImp;
+import gc._4.pr2.grupo1.service.IMesaService;
 
 
 @RestController
 public class MesaController {
 	
 	@Autowired
-	private MesaServiceImp service;
+	private IMesaService service;
 	
 	@GetMapping("/Mesa")
 	public List<Mesa> mostrarTodasMesa(){

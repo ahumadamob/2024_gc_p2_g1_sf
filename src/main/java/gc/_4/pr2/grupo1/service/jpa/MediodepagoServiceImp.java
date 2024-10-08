@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import gc._4.pr2.grupo1.entity.Mediodepago;
 import gc._4.pr2.grupo1.repository.MediodepagoRepository;
-import gc._4.pr2.grupo1.service.MediodepagoService;
+import gc._4.pr2.grupo1.service.IMediodepagoService;
 
 
 @Service
-public class MediodepagoServiceImp implements MediodepagoService {
+public class MediodepagoServiceImp implements IMediodepagoService {
 
 	@Autowired
 	private MediodepagoRepository repo;
