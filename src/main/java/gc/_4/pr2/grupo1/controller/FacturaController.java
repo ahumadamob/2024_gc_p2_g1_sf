@@ -3,8 +3,8 @@ package gc._4.pr2.grupo1.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,21 +27,30 @@ public class FacturaController {
 	
 	@GetMapping("/pruebaok")
 	public ResponseDTO<?> pruebaOk(){
-		ResponseEntity response;
 		ResponseDTO<?> dto = new ResponseDTO<>();
 		dto.setCode(200);
-		dto.setMessage("La prueba salio OK");	
+		dto.setMessage("La prueba salio OK");
+		
+		//ResponseEntity response;
 		//response = new ResponseEntity("Prueba OK", HttpStatus.OK);
 		//return response;
+		
 		return dto;
 		
 	}
 	
 	@GetMapping("/pruebanotfound")
-	public ResponseEntity pruebaNotFound(){
+	public ResponseDTO<?> pruebaNotFound(){
+		ResponseDTO<?> dto = new ResponseDTO<>();
+		dto.setCode(404);
+		dto.setMessage("Mensaje de prueba para Not Found");
+		
+		/*
 		ResponseEntity response;
 		response = new ResponseEntity("Mensaje de prueba para Not Found", HttpStatus.NOT_FOUND);
-		return response;
+		*/
+		
+		return dto;
 		
 	}	
 	/*
@@ -111,17 +120,28 @@ public class FacturaController {
 	
 	
 	@PostMapping("/factura")
-	ResponseEntity crearNuevoFactura(@RequestBody Factura facturaDesdeElServicio){
+	ResponseDTO<?> crearNuevoFactura(@RequestBody Factura facturaDesdeElServicio){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
 		if(service.existe(facturaDesdeElServicio.getId())) {
-			ResponseEntity response;
-			response = new ResponseEntity("Este elemento ya existe", HttpStatus.BAD_REQUEST );
-			return response;			
+			dto.setCode(400);
+			dto.setMessage("Este elemento ya existe");
+			//dto.setData(null);
+			
+			//ResponseEntity response;
+			//response = new ResponseEntity("Este elemento ya existe", HttpStatus.BAD_REQUEST );
+			
+			
+			return dto;			
 			
 		}else {
-			ResponseEntity response;
-			response = new ResponseEntity(service.guardar(facturaDesdeElServicio), HttpStatus.CREATED );
-			return response;			
-			//crear nuevo tipo
+			dto.setCode(201);
+			dto.setMessage("Guardado");
+			dto.setData(service.guardar(facturaDesdeElServicio));
+			
+			//ResponseEntity response;
+			//response = new ResponseEntity(service.guardar(facturaDesdeElServicio), HttpStatus.CREATED );
+			
+			return dto;		
 		}
 		
 	}
@@ -135,15 +155,24 @@ public class FacturaController {
 	
 	
 	@PutMapping("/factura")
-	ResponseEntity actualizarTipoNuevoPokemon(@RequestBody Factura facturaDesdeElServicio){
+	ResponseDTO<?> actualizarTipoNuevoPokemon(@RequestBody Factura facturaDesdeElServicio){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
 		if(service.existe(facturaDesdeElServicio.getId())) {
-			ResponseEntity response;
-			response = new ResponseEntity(service.guardar(facturaDesdeElServicio), HttpStatus.OK );
-			return response;
+			dto.setCode(200);
+			dto.setMessage("Modificado");
+			dto.setData(service.guardar(facturaDesdeElServicio));
+			
+			//ResponseEntity response;
+			//response = new ResponseEntity(service.guardar(facturaDesdeElServicio), HttpStatus.OK );
+			return dto;
 		}else {
-			ResponseEntity response;
-			response = new ResponseEntity("Este elemento no existe, utilice el POST", HttpStatus.BAD_REQUEST );
-			return response;
+			dto.setCode(400);
+			dto.setMessage("Este elemento no existe, utilice el POST");
+			//dto.setData(null);
+			
+			//ResponseEntity response;
+			//response = new ResponseEntity("Este elemento no existe, utilice el POST", HttpStatus.BAD_REQUEST );
+			return dto;
 		}
 		
 	}
@@ -157,16 +186,25 @@ public class FacturaController {
 	
 	
 	@DeleteMapping("/factura/{id}")
-	ResponseEntity borrarFactura(@PathVariable("id") Long id){
+	ResponseDTO<?> borrarFactura(@PathVariable("id") Long id){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
 		if(service.existe(id)) {
-			ResponseEntity response;
+			dto.setCode(200);
+			dto.setMessage("Modificado");
+			//dto.setData(null);
 			service.eliminarPorId(id);
-			response = new ResponseEntity("Elemento eliminado", HttpStatus.OK );
-			return response;
+			
+			//ResponseEntity response;
+			//response = new ResponseEntity("Elemento eliminado", HttpStatus.OK );
+			return dto;
 		}else {
-			ResponseEntity response;
-			response = new ResponseEntity("Este elemento no existe, No se puede eliminar", HttpStatus.BAD_REQUEST );
-			return response;
+			dto.setCode(400);
+			dto.setMessage("Este elemento no existe, No se puede eliminar");
+			//dto.setData(null);
+			
+			//ResponseEntity response;
+			//response = new ResponseEntity("Este elemento no existe, No se puede eliminar", HttpStatus.BAD_REQUEST );
+			return dto;
 		}
 		
 	}
