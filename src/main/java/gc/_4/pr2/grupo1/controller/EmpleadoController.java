@@ -122,4 +122,23 @@ public class EmpleadoController {
 			
 		return dto;
 	}
+	
+	@GetMapping("/empleados/existe/{id}")
+	public ResponseDTO<Empleado> existeEmpleado(@PathVariable("id") Long id) {
+		ResponseDTO<Empleado> dto = new ResponseDTO<>();
+		
+		if (service.exists(id)) {
+			Empleado empleado = new Empleado();
+			
+			dto.setStatus(true);
+			dto.setMessage("El empleado con el ID: " + id + " existe.");
+			dto.setData(null);
+		} else {
+			dto.setStatus(false);
+			dto.setMessage("El empleado con el ID: " + id + " no existe.");
+			dto.setData(null);
+		}
+		
+		return dto;
+	}
 }
