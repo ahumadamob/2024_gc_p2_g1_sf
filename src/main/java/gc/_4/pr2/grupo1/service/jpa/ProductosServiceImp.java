@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import gc._4.pr2.grupo1.entity.Productos;
 import gc._4.pr2.grupo1.repository.ProductosRepository;
-import gc._4.pr2.grupo1.service.IProductosService;
+import gc._4.pr2.grupo1.service.ProductosService;
 
 @Service
-public class ProductosServiceImp implements IProductosService{
+public class ProductosServiceImp implements ProductosService{
 	
 	@Autowired
 	private ProductosRepository repo;

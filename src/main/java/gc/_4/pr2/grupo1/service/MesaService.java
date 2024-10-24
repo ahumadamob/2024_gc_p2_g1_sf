@@ -4,7 +4,7 @@ import java.util.List;
 
 import gc._4.pr2.grupo1.entity.Mesa;
 
-public interface IMesaService {
+public interface MesaService {
 	public List<Mesa>mostrarTodos();
 	public Mesa mostrarPorId(Long id);
 	public Mesa guardar(Mesa mesa);

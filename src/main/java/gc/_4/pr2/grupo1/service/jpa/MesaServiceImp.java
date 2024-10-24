@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gc._4.pr2.grupo1.entity.Mesa;
-import gc._4.pr2.grupo1.service.IMesaService;
+import gc._4.pr2.grupo1.service.MesaService;
 import gc._4.pr2.grupo1.repository.MesaRepository;
 
 @Service
-public class MesaServiceImp implements IMesaService{
+public class MesaServiceImp implements MesaService{
 	@Autowired
 	private MesaRepository repo;
 	

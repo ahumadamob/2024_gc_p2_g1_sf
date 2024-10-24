@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import gc._4.pr2.grupo1.entity.Empleado;
-import gc._4.pr2.grupo1.service.IEmpleadoService;
+import gc._4.pr2.grupo1.service.EmpleadoService;
 
 @RestController
 public class EmpleadoController {
 	
 	@Autowired
-	private IEmpleadoService service;
+	private EmpleadoService service;
 	
 	@GetMapping("/empleado")
 	public List<Empleado> mostrarTodosEmpleados(){

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import gc._4.pr2.grupo1.entity.Productos;
-import gc._4.pr2.grupo1.service.IProductosService;
+import gc._4.pr2.grupo1.service.ProductosService;
 
 
 
@@ -20,7 +20,7 @@ import gc._4.pr2.grupo1.service.IProductosService;
 public class ProductosController {
 
 	@Autowired
-	private IProductosService service;
+	private ProductosService service;
 	
 	@GetMapping("/productos")
 	public List<Productos> mostrarTodosProductos(){

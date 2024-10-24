@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import gc._4.pr2.grupo1.entity.Pedidos;
-import gc._4.pr2.grupo1.service.IPedidosService;
+import gc._4.pr2.grupo1.service.PedidosService;
 
 
 
 @RestController
 public class PedidosController {
 	@Autowired
-	private IPedidosService service;
+	private PedidosService service;
 	
 	@GetMapping("/pedidos")
 	public List<Pedidos> mostrarTodosPedidos(){

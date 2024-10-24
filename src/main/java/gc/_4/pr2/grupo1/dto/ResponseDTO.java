@@ -1,14 +1,18 @@
 package gc._4.pr2.grupo1.dto;
 
 public class ResponseDTO<T> {
-	private int code;
+	private boolean status;
 	private String message;
 	private T data;
-	public int getCode() {
-		return code;
+	
+	
+	
+	
+	public boolean isStatus() {
+		return status;
 	}
-	public void setCode(int code) {
-		this.code = code;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	public String getMessage() {
 		return message;

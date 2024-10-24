@@ -5,7 +5,7 @@ import java.util.List;
 
 import gc._4.pr2.grupo1.entity.Pedidos;
 
-public interface IPedidosService {
+public interface PedidosService {
 	
 	public List<Pedidos>mostrarTodos();
 	public Pedidos mostrarPorId(Long id);
