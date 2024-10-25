@@ -81,7 +81,7 @@ public class FacturaController {
 	
 	
 	@PutMapping("/factura")
-	ResponseDTO<?> actualizarTipoNuevoPokemon(@RequestBody Factura facturaDesdeElServicio){
+	ResponseDTO<?> actualizarFactura(@RequestBody Factura facturaDesdeElServicio){
 		ResponseDTO<Factura> dto = new ResponseDTO<>();
 		if(service.existe(facturaDesdeElServicio.getId())) {
 			dto.setStatus(true);
