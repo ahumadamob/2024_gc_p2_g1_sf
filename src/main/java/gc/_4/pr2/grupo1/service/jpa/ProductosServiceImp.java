@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import gc._4.pr2.grupo1.entity.Productos;
 import gc._4.pr2.grupo1.repository.ProductosRepository;
-import gc._4.pr2.grupo1.service.ProductosService;
+import gc._4.pr2.grupo1.service.IProductosService;
 
 @Service
-public class ProductosServiceImp implements ProductosService{
+public class ProductosServiceImp implements IProductosService{
 	
 	@Autowired
 	private ProductosRepository repo;
@@ -20,7 +20,7 @@ public class ProductosServiceImp implements ProductosService{
 	
 	@Override
 	public Productos mostrarPorId(Long id) {
-		return repo.findById(null).orElse(null);
+		return repo.findById(id).orElse(null);
 	}
 	
 	@Override
@@ -33,6 +33,14 @@ public class ProductosServiceImp implements ProductosService{
 	public void eliminarPorId(Long id) {
 		repo.deleteById(id);
 	}
-	
 
+	@Override
+	public boolean existe(Long id) {
+		if(id == null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+	}
+	
 }
