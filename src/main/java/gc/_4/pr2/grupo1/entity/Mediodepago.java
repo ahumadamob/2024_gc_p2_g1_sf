@@ -11,32 +11,37 @@ public class Mediodepago {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	private String Descripción;
-	private int Comisiones;
-	private String Disponibilidad;
+	//Ejemplo de encapsulamiento: nombre es private  y no se puede acceder directamente
+	private String descripción;
+	private int comisiones;
+	private String disponibilidad;
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	// ejemplo del metodo getter del atributo encapsulado
 	public String getDescripción() {
-		return Descripción;
+		return descripción;
 	}
+	// ejemplo del metodo setter del atributo encapsulado
 	public void setDescripción(String descripción) {
-		Descripción = descripción;
+		this.descripción = descripción;
 	}
 	public int getComisiones() {
-		return Comisiones;
+		return comisiones;
 	}
 	public void setComisiones(int comisiones) {
-		Comisiones = comisiones;
+		this.comisiones = comisiones;
 	}
 	public String getDisponibilidad() {
-		return Disponibilidad;
+		return disponibilidad;
 	}
 	public void setDisponibilidad(String disponibilidad) {
-		Disponibilidad = disponibilidad;
+		this.disponibilidad = disponibilidad;
 	}
 	public Long getId() {
 		return id;
