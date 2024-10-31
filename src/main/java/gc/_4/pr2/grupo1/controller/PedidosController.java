@@ -11,42 +11,134 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import gc._4.pr2.grupo1.dto.ResponseDTO;
 import gc._4.pr2.grupo1.entity.Pedidos;
-import gc._4.pr2.grupo1.service.PedidosService;
+import gc._4.pr2.grupo1.service.IPedidosService;
 
 
 
 @RestController
 public class PedidosController {
 	@Autowired
-	private PedidosService service;
+	private IPedidosService service;
 	
 	@GetMapping("/pedidos")
-	public List<Pedidos> mostrarTodosPedidos(){
+	public ResponseDTO <List<Pedidos>> mostrarTodosPedidos(){
 		
-		return service.mostrarTodos();
+	 List<Pedidos>ListaPedidos;
+	 ListaPedidos= service.mostrarTodos();
+	 ResponseDTO <List<Pedidos>> dto;
+	 dto=new ResponseDTO <List<Pedidos>>();
+	 
+	 if(ListaPedidos.isEmpty()){
+		 dto.setStatus(false);
+		 dto.setMessage("No hay Pedido disponible");
+		 dto.setData(null);
+		 
+	 }else {
+		 dto.setStatus(true);
+		 dto.setMessage("Se encontraron los Pedido");
+		 dto.setData(ListaPedidos);  
+	 }
+	 return dto;
 	}
 	
 	@GetMapping("/pedidos/{id}")
-	Pedidos mostrarPedidosId(@PathVariable("id") Long id){
+	public ResponseDTO <Pedidos> mostrarPedidosId(@PathVariable("id") Long id){
 		
-		return service.mostrarPorId(id);
+		//ejemplo de instancia de objeto.
+		ResponseDTO <Pedidos> dto;
+		//ejemplo de inicializacion de objeto.
+		dto=new ResponseDTO <Pedidos>();
+		
+		if(service.exists(id)) {
+			
+			Pedidos pedidos= new Pedidos();
+			pedidos=service.mostrarPorId(id);
+			dto.setStatus(true);
+			dto.setMessage("Pedido encontrado");
+			dto.setData(pedidos);
+		
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("Pedido no encontrado por ID " + id);
+			dto.setData(null);
+			
+		}
+		return dto;
 	}
 	
 	@PostMapping("/pedidos")
-	Pedidos crearNuevoPedidos(@RequestBody Pedidos pedidosDesdeElServicio){
+	public ResponseDTO <Pedidos> crearNuevoPedidos(@RequestBody Pedidos pedidosDesdePostman){
+		ResponseDTO<Pedidos> dto=new ResponseDTO<>();
 		
-		return service.guardar(pedidosDesdeElServicio);
+		if(service.exists(pedidosDesdePostman.getId())){
+			dto.setStatus(false);
+			dto.setMessage("Error! El Pedido con "+ pedidosDesdePostman);
+			dto.setData(null);
+		}else {
+			dto.setStatus(true);
+			dto.setMessage("Pedido creado exitosamente.");
+			dto.setData(service.guardar(pedidosDesdePostman));
+		}
+		return dto;
 	}
 	
 	@PutMapping("/pedidos")
-	Pedidos actualizarNuevoPedidos(@RequestBody Pedidos pedidosDesdeElServicio){
+	public ResponseDTO <Pedidos> actualizarNuevoPedidos(@RequestBody Pedidos pedidosDesdePostman){
+		ResponseDTO<Pedidos> dto= new ResponseDTO<>();
 		
-		return service.guardar(pedidosDesdeElServicio);
+		if(service.exists(pedidosDesdePostman.getId())) {
+			dto.setStatus(true);
+			dto.setMessage("Pedido realizado exitosamente. ");
+			dto.setData(service.guardar(pedidosDesdePostman));
+			return dto;
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("Error! No se puede actualizar el pedido por Id "+ pedidosDesdePostman.getId().toString() + " no existe. ");
+			dto.setData(null);
+		}
+		
+		return dto;
 	}
 	
-	@DeleteMapping("/pedidos/{id}")
-	void borrarPedidos(@PathVariable("id") Long id){
-		service.eliminarPorId(id);
+	@DeleteMapping("/pedidos/{ideliminar}")
+	public ResponseDTO<?> borrarPedidos(@PathVariable("ideliminar") Long id){
+		ResponseDTO<?> dto = new ResponseDTO<>();
+		
+		if(service.exists(id)){
+			dto.setStatus(true);
+			dto.setMessage("Pedido eliminado con exito. ");
+			dto.setData(null);
+			
+			service.eliminarPorId(id);
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("Error! no se encontró Pedido por ID: " + id);
+			dto.setData(null);
+		}
+		
+		return dto;
 	}
+	
+	@GetMapping("/pedidos/existe/{id}")
+	public ResponseDTO<Pedidos> existePedidos (@PathVariable("id")Long id){
+		ResponseDTO<Pedidos> dto= new ResponseDTO<>();
+		
+		if(service.exists(id)) {
+			Pedidos pedidos = new Pedidos();
+			dto.setStatus(true);
+			dto.setMessage("El pedido con el id: "+ id + " existe.");
+			dto.setData(null);
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("El pedido con el id: "+ id + " no existe.");
+			dto.setData(null);
+		}
+		
+		return dto;
+	}
+	
+	
+	
 }
