@@ -39,6 +39,16 @@ public class MediodepagoServiceImp implements MediodepagoService {
 		repo.deleteById(id);
 		
 	}
+	
+	@Override
+	public boolean exists(Long id) {
+		if (id==null) {
+			return false;
+			} else {
+			return repo.existsById(id);
+			}
+		
+		}
+	}
 
-}
 	

@@ -1,8 +1,7 @@
 package gc._4.pr2.grupo1.dto;
 
 public class ResponseDTO <T> {
-	
-	private boolean status;
+	private boolean status; 
 	private String message;
 	private T data;
 	
@@ -14,7 +13,7 @@ public class ResponseDTO <T> {
 	}
 	
 	public ResponseDTO() {
-		
+	
 	}
 
 	public boolean isStatus() {
@@ -40,8 +39,8 @@ public class ResponseDTO <T> {
 	public void setData(T data) {
 		this.data = data;
 	}
+		
 	
 	
-
 
 }
