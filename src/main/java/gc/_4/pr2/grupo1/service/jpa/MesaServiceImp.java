@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gc._4.pr2.grupo1.entity.Mesa;
-import gc._4.pr2.grupo1.service.MesaService;
+import gc._4.pr2.grupo1.service.IMesaService;
 import gc._4.pr2.grupo1.repository.MesaRepository;
 
 @Service
-public class MesaServiceImp implements MesaService{
+public class MesaServiceImp implements IMesaService{
 	@Autowired
 	private MesaRepository repo;
 	
@@ -32,6 +32,18 @@ public class MesaServiceImp implements MesaService{
 	public void eliminarPorId(Long id) {
 		repo.deleteById(id);
 	}
+
+	@Override
+	public boolean existe(Long id) {
+		if(id == null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+			//repo.existById devuelve T si el ID existe, F si no
+		}
+	}
+	
+	
 
 }
 

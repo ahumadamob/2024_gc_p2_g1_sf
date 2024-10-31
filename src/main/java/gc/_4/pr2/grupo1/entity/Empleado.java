@@ -12,19 +12,29 @@ import java.util.List;
 @Entity
 public class Empleado {
 
+	//ATRIBUTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private Long id;
 	private String nombre;
 	private String turno;
 	private String cargo;
 	private String contacto;
 	
+	//RELACION CON OTRAS ENTIDADES
 	@OneToMany(mappedBy = "empleado")
 	private List<Factura> factura;
+	
     @OneToMany(mappedBy = "empleado")
     private List<Pedidos> pedidos;
 	
+    //METODOS GETTER Y SETTER
+    public Long getId() {
+    	return this.id;
+    }
+    public void setId(Long id) {
+    	this.id = id;
+    }
 	public String getNombre() {
 		return nombre;
 	}
@@ -48,7 +58,5 @@ public class Empleado {
 	}
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
-	}
-	
-	
+	}	
 }

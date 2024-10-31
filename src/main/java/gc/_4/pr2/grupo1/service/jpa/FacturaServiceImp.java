@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import gc._4.pr2.grupo1.entity.Factura;
 import gc._4.pr2.grupo1.repository.FacturaRepository;
-import gc._4.pr2.grupo1.service.FacturaService;
+import gc._4.pr2.grupo1.service.IFacturaService;
 
 
 @Service
-public class FacturaServiceImp implements FacturaService {
+public class FacturaServiceImp implements IFacturaService {
 
 	@Autowired
 	private FacturaRepository repo;
@@ -40,6 +40,16 @@ public class FacturaServiceImp implements FacturaService {
 		
 	}
 
-	
+	@Override
+	public boolean existe(Long id) {
+		if(id == null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+		
+		// TODO Auto-generated method stub
+		//return false;
+	}
 	
 }
