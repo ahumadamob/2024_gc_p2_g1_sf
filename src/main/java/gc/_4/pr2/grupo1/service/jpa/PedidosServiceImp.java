@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import gc._4.pr2.grupo1.entity.Pedidos;
 import gc._4.pr2.grupo1.repository.PedidosRepository;
-import gc._4.pr2.grupo1.service.PedidosService;
+import gc._4.pr2.grupo1.service.IPedidosService;
 
 
 @Service
-public class PedidosServiceImp implements PedidosService {
+public class PedidosServiceImp implements IPedidosService {
 
 	@Autowired
 	private PedidosRepository repo;
@@ -40,7 +40,16 @@ public class PedidosServiceImp implements PedidosService {
 		
 	}
 
-	
-	
+	@Override
+	public boolean exists(Long id) {
+		if (id == null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+			
+		
+		
+	}
 	
 }

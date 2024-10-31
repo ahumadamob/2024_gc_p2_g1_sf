@@ -16,11 +16,11 @@ public class Pedidos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
-	private String FechyHoraDePedido;
-	private String FechyHoraDeEntrega;
-	private String Estado;
-	private String TiempoEstimado;
+	//ejemplo de encapsulamiento:fechyHoraDePedido es privado no se accede.
+	private String fechyHoraDePedido;
+	private String fechyHoraDeEntrega;
+	private String estado;
+	private String tiempoEstimado;
 	
 	@OneToOne(mappedBy="pedidos")
 	private Factura factura;
@@ -44,30 +44,31 @@ public class Pedidos {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+	//Metodo Getter del atributo encapsulado.
 	public String getFechyHoraDePedido() {
-		return FechyHoraDePedido;
+		return fechyHoraDePedido;
 	}
+	//Metodo Setter del atributo encapsulado.
 	public void setFechyHoraDePedido(String fechyHoraDePedido) {
-		FechyHoraDePedido = fechyHoraDePedido;
+		this.fechyHoraDePedido = fechyHoraDePedido;
 	}
 	public String getFechyHoraDeEntrega() {
-		return FechyHoraDeEntrega;
+		return fechyHoraDeEntrega;
 	}
 	public void setFechyHoraDeEntrega(String fechyHoraDeEntrega) {
-		FechyHoraDeEntrega = fechyHoraDeEntrega;
+		this.fechyHoraDeEntrega = fechyHoraDeEntrega;
 	}
 	public String getEstado() {
-		return Estado;
+		return estado;
 	}
 	public void setEstado(String estado) {
-		Estado = estado;
+		this.estado = estado;
 	}
 	public String getTiempoEstimado() {
-		return TiempoEstimado;
+		return tiempoEstimado;
 	}
 	public void setTiempoEstimado(String tiempoEstimado) {
-		TiempoEstimado = tiempoEstimado;
+		this.tiempoEstimado = tiempoEstimado;
 	}
 	
 	public Empleado getEmpleado() {

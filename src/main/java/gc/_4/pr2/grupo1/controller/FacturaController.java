@@ -10,43 +10,117 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import gc._4.pr2.grupo1.entity.Factura;
-import gc._4.pr2.grupo1.service.FacturaService;
+import gc._4.pr2.grupo1.service.IFacturaService;
+import gc._4.pr2.grupo1.dto.ResponseDTO;
 
 
 
 @RestController
 public class FacturaController {
 	@Autowired
-	private FacturaService service;
+	private IFacturaService service;
+	
 	
 	@GetMapping("/factura")
-	public List<Factura> mostrarTodosFactura(){
+	public ResponseDTO<List<Factura>> mostrarTodosFactura(){
 		
-		return service.mostrarTodos();
+		//instancia de dto y lista todos
+		ResponseDTO<List<Factura>> dto = new ResponseDTO<>();
+		List<Factura> listaTodos;
+		
+		//inicializacion de lista todos
+		listaTodos = service.mostrarTodos();
+		
+		
+		if(listaTodos.isEmpty()) {
+			//encapsulamiento
+			dto.setStatus(false);
+			dto.setMessage("Listado Vacio");
+			dto.setData(listaTodos);			
+		}else {
+			//encapsulamiento
+			dto.setStatus(true);
+			dto.setMessage("Listado");
+			dto.setData(listaTodos);			
+		}
+		return dto;
+		
 	}
 	
 	@GetMapping("/factura/{id}")
-	Factura mostrarFacturaId(@PathVariable("id") Long id){
-		
-		return service.mostrarPorId(id);
+	ResponseDTO<?> mostrarFacturaId(@PathVariable("id") Long id){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
+		if(service.existe(id)) {
+			dto.setStatus(true);
+			dto.setMessage("Encontrado");
+			dto.setData(service.mostrarPorId(id));
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("No Encontrado");
+		}
+		return dto;
 	}
 	
 	@PostMapping("/factura")
-	Factura crearNuevoFactura(@RequestBody Factura facturaDesdeElServicio){
+	ResponseDTO<?> crearNuevoFactura(@RequestBody Factura facturaDesdeElServicio){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
+		if(service.existe(facturaDesdeElServicio.getId())) {
+			dto.setStatus(false);
+			dto.setMessage("Este elemento ya existe");
+			return dto;			
+			
+		}else {
+			dto.setStatus(true);
+			dto.setMessage("Guardado");
+			dto.setData(service.guardar(facturaDesdeElServicio));
+			return dto;		
+		}
 		
-		return service.guardar(facturaDesdeElServicio);
 	}
+	
 	
 	@PutMapping("/factura")
-	Factura actualizarNuevoFactura(@RequestBody Factura facturaDesdeElServicio){
-		
-		return service.guardar(facturaDesdeElServicio);
+	ResponseDTO<?> actualizarFactura(@RequestBody Factura facturaDesdeElServicio){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
+		if(service.existe(facturaDesdeElServicio.getId())) {
+			dto.setStatus(true);
+			dto.setMessage("Modificado");
+			dto.setData(service.guardar(facturaDesdeElServicio));
+			return dto;
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("Este elemento no existe, utilice el POST");
+			return dto;
+		}
 	}
 	
+	
 	@DeleteMapping("/factura/{id}")
-	void borrarFactura(@PathVariable("id") Long id){
-		service.eliminarPorId(id);
+	ResponseDTO<?> borrarFactura(@PathVariable("id") Long id){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
+		if(service.existe(id)) {
+			dto.setStatus(true);
+			dto.setMessage("Eliminado");
+			service.eliminarPorId(id);
+			return dto;
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("Este elemento no existe, No se puede eliminar");
+			return dto;
+		}
+		
+		
+		
+		
+		
+		
+		
 	}
+	
+	
+	
+	
+	
+	
 }
