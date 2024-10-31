@@ -6,6 +6,8 @@ public class ResponseDTO<T> {
 	private T data;
 	
 	
+	
+	
 	public boolean isStatus() {
 		return status;
 	}
@@ -24,7 +26,7 @@ public class ResponseDTO<T> {
 	public void setData(T data) {
 		this.data = data;
 	}
-
+	
+	
 	
 }
-
