@@ -1,5 +1,6 @@
 package gc._4.pr2.grupo1.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +86,6 @@ public class MesaController {
 			return dto;
 
 		}
-		
-		return service.guardar(mesaDesdeElServicio);
 	}
 	
 	@PutMapping("/Mesa")
