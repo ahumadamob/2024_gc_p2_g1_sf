@@ -15,4 +15,8 @@ public interface IEmpleadoService {
 	public void eliminarPorId(Long id);
 	
 	public boolean exists(Long id);
+	
+	// Define un método para obtener empleados filtrados por el estado "activo".
+	// El parámetro "activo" es un booleano que indica si se desean empleados activos (true) o inactivos (false).
+	List<Empleado> obtenerEmpleadosActivos(boolean activo);
 }

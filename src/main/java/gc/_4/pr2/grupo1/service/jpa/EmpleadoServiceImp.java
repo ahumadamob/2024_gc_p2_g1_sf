@@ -43,4 +43,12 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 			return repo.existsById(id);
 		}
 	}
+	
+	@Override
+	public List<Empleado> obtenerEmpleadosActivos(boolean activo) {
+		// Llamada al método del repositorio 
+		//para obtener una lista de empleados filtrados por el estado "activo".
+		return repo.findByActivo(activo);
+	}
+
 }
