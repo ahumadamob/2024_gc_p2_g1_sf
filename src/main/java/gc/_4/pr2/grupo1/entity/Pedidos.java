@@ -22,6 +22,15 @@ public class Pedidos {
 	private String estado;
 	private String tiempoEstimado;
 	
+	private Boolean urgente;
+	
+	public Boolean getUrgente() {
+		return urgente;
+	}
+	public void setUrgente(Boolean urgente) {
+		this.urgente = urgente;
+	}
+
 	@OneToOne(mappedBy="pedidos")
 	private Factura factura;
 	

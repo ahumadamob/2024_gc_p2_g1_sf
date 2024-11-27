@@ -139,6 +139,25 @@ public class PedidosController {
 		return dto;
 	}
 	
+	@GetMapping("/pedidos/urgentes/{id}")
+	public ResponseDTO <List<Pedidos>> obtenerPedidosUrgente(@PathVariable("id")Long id) {
+       ResponseDTO<Pedidos> dto= new ResponseDTO<>();
+		
+		if(service.urgente(id)) {
+			Pedidos pedidos = new Pedidos();
+			dto.setStatus(true);
+			dto.setMessage("El pedido con el id: "+ id + " es urgente.");
+			dto.setData(null);
+		}else {
+			dto.setStatus(false);
+			dto.setMessage("El pedido con el id: "+ id + " no es urgente.");
+			dto.setData(null);
+		}
+		
+		return dto;
+	}
+	 
+	
 	
 	
 }

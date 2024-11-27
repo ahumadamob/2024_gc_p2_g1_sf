@@ -13,6 +13,8 @@ public interface IPedidosService {
 	public void eliminarPorId(Long id);
 	public boolean exists(Long id);
 	
+	public boolean urgente(Long id);
+	
 	
 
 
