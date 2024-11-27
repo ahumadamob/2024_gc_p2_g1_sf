@@ -141,4 +141,31 @@ public class EmpleadoController {
 		
 		return dto;
 	}
+	
+	@GetMapping("/empleados/activos")
+	public ResponseDTO<List<Empleado>> obtenerEmpleadosActivos() {
+		// Llamada al servicio para obtener empleados activos
+		List<Empleado> listaEmpleados;
+		listaEmpleados = service.obtenerEmpleadosActivos(true);
+		
+		// Crear objeto DTO
+		ResponseDTO<List<Empleado>> dto;
+		dto = new ResponseDTO<List<Empleado>>();
+		
+		if (listaEmpleados.isEmpty()) {
+			// Respuesta cuando no hay empleados activos
+			dto.setStatus(false);
+			dto.setMessage("No hay datos disponibles.");
+			dto.setData(null);
+			dto.setActivo(false); //Indicamos que no hay empleados activos
+		} else {
+			// Respuesta cuando se encuentran empleados activos
+			dto.setStatus(true);
+			dto.setMessage("Se encontraron los siguientes empleados activos:");
+			dto.setData(listaEmpleados);
+			dto.setActivo(true); // Indicamos que hay empleados activos
+		}
+		return dto;
+	}
+
 }

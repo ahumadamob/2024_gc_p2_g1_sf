@@ -4,12 +4,14 @@ public class ResponseDTO <T> {
 	private boolean status; 
 	private String message;
 	private T data;
+	private boolean activo;
 	
-	public ResponseDTO(boolean status, String message, T data) {
+	public ResponseDTO(boolean status, String message, T data, boolean activo) {
 		super();
 		this.status = status;
 		this.message = message;
 		this.data = data;
+		this.activo = activo;
 	}
 	
 	public ResponseDTO() {
@@ -39,8 +41,13 @@ public class ResponseDTO <T> {
 	public void setData(T data) {
 		this.data = data;
 	}
-		
-	
-	
 
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	
 }

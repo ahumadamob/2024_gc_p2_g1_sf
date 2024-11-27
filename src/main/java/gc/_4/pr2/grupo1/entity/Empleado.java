@@ -20,6 +20,7 @@ public class Empleado {
 	private String turno;
 	private String cargo;
 	private String contacto;
+	private boolean activo;
 	
 	//RELACION CON OTRAS ENTIDADES
 	@OneToMany(mappedBy = "empleado")
@@ -58,5 +59,11 @@ public class Empleado {
 	}
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
+	}
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}	
 }
