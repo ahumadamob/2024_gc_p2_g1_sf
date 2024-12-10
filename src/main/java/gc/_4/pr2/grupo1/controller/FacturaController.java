@@ -21,6 +21,28 @@ public class FacturaController {
 	@Autowired
 	private IFacturaService service;
 	
+	/*Metodo Post con validacion*/
+	@PostMapping("/api/factura")
+	ResponseDTO<?> registrarFactura(@RequestBody Factura facturaDesdeElServicio){
+		ResponseDTO<Factura> dto = new ResponseDTO<>();
+			
+		/*Validacion de ImpuestosAplicados>=0*/
+		if(facturaDesdeElServicio.getImpuestosAplicados()<0) {
+			dto.setStatus(false);
+			dto.setMessage("El valor de impuestos aplicados debe ser mayor o igual a 0");
+			dto.setData(null);
+			return dto;	
+			
+		}else {
+			dto.setStatus(true);
+			dto.setMessage("Factura creada exitosamente");
+			dto.setData(service.guardar(facturaDesdeElServicio));
+			return dto;		
+		}
+		
+	}
+	
+	
 	
 	@GetMapping("/factura")
 	public ResponseDTO<List<Factura>> mostrarTodosFactura(){

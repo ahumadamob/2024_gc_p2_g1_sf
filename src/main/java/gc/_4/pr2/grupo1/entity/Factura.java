@@ -18,6 +18,10 @@ public class Factura {
 	private String detalle;
 	private int total;
 	private String FechaYHora;
+	
+	/*Nuevo atributo impuestosAplicados*/
+	private double impuestosAplicados;
+	
 	@OneToOne
 	private Pedidos pedidos;
 	
@@ -31,9 +35,23 @@ public class Factura {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	/*Getters y Setters impuestosAplicados*/
+	
+	public double getImpuestosAplicados() {
+		return impuestosAplicados;
+	}
+	public void setImpuestosAplicados(double impuestosAplicados) {
+		this.impuestosAplicados = impuestosAplicados;
+	}
+	
+	
+	
+	
 	public String getDetalle() {
 		return detalle;
 	}
+	
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
