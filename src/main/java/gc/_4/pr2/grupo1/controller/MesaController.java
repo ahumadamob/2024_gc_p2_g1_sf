@@ -80,13 +80,20 @@ public class MesaController {
 			return dto;
 			
 		}else {
-			dto.setStatus(true);
-			dto.setMessage("Mesa creada con exito");
-			dto.setData(service.guardar(mesaDesdeElServicio));
-			return dto;
-
+			if(service.validaciónMesa(mesaDesdeElServicio)) {
+				dto.setStatus(true);
+				dto.setMessage("Mesa creada con exito");
+				dto.setData(service.guardar(mesaDesdeElServicio));
+				return dto;
+			}else {
+				dto.setStatus(false);
+				dto.setMessage("Una mesa con capacidad mayor a 6 no puede estar no disponible");
+				return dto;
+			}
+		
 		}
 	}
+	
 	
 	@PutMapping("/Mesa")
 	public ResponseDTO<Mesa> actualizarNuevaMesa(@RequestBody Mesa mesaDesdeElServicio){

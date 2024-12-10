@@ -19,6 +19,7 @@ public class Mesa {
 	private Long id;
 	private int capacidad;
 	private boolean estado;
+	private boolean disponibilidad;
 	@ManyToOne
 	@JoinColumn(name="empleado_id")
 	private Empleado empleado;
@@ -49,6 +50,12 @@ public class Mesa {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	public boolean isDisponibilidad() {
+		return disponibilidad;
+	}
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 	
 	
