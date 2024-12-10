@@ -10,5 +10,6 @@ public interface IMesaService {
 	public Mesa guardar(Mesa mesa);
 	public void eliminarPorId(Long id); 
 	public boolean existe(Long id);
+	public boolean validaciónMesa(Mesa Mesa);
 
 }

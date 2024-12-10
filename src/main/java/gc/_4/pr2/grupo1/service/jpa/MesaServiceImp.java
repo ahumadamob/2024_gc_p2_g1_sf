@@ -42,8 +42,18 @@ public class MesaServiceImp implements IMesaService{
 			//repo.existById devuelve T si el ID existe, F si no
 		}
 	}
+
+	@Override
+	public boolean validaciónMesa(Mesa Mesa) {
+		if(Mesa.getCapacidad() > 6 && !Mesa.isDisponibilidad()) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 	
-	
+
+
 
 }
 
