@@ -46,10 +46,21 @@ public class PedidosServiceImp implements IPedidosService {
 			return false;
 		}else {
 			return repo.existsById(id);
-		}
-			
-		
+		}	
 		
 	}
 	
-}
+	@Override
+	public boolean cantidadItems(Long id) {
+		if (id == 0) {
+			return false;
+		}else {
+			return repo.findById(id);
+		}	
+		
+	}
+
+	
+	
+}	
+

@@ -4,14 +4,17 @@ public class ResponseDTO <T> {
 	private boolean status; 
 	private String message;
 	private T data;
-	private boolean activo;
+	private int cantidadItems;
 	
-	public ResponseDTO(boolean status, String message, T data, boolean activo) {
+	
+	public ResponseDTO(boolean status, String message, T data, int cantidadItems) {
 		super();
 		this.status = status;
 		this.message = message;
 		this.data = data;
-		this.activo = activo;
+		this.cantidadItems = cantidadItems;
+		
+		
 	}
 	
 	public ResponseDTO() {
@@ -42,12 +45,14 @@ public class ResponseDTO <T> {
 		this.data = data;
 	}
 
-	public boolean isActivo() {
-		return activo;
+	public int getCantidadItems() {
+		return cantidadItems;
 	}
 
-	public void setActivo(boolean activo) {
-		this.activo = activo;
+	public void setCantidadItems(int cantidadItems) {
+		this.cantidadItems = cantidadItems;
 	}
+
+		
 	
 }

@@ -12,8 +12,7 @@ public interface IPedidosService {
 	public Pedidos guardar(Pedidos pedidos);
 	public void eliminarPorId(Long id);
 	public boolean exists(Long id);
+	public boolean cantidadItems(Long id);
 	
 	
-
-
 }
