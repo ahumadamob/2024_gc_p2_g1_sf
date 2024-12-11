@@ -21,6 +21,7 @@ public class Pedidos {
 	private String fechyHoraDeEntrega;
 	private String estado;
 	private String tiempoEstimado;
+	private int cantidadItems;
 	
 	@OneToOne(mappedBy="pedidos")
 	private Factura factura;
@@ -78,5 +79,13 @@ public class Pedidos {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
+	public int getCantidadItems() {
+		return cantidadItems;
+	}
+	public void setCantidadItems(int cantidadItems) {
+		this.cantidadItems = cantidadItems;
+	}
 
+    
+    
 }

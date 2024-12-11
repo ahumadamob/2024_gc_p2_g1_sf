@@ -7,4 +7,6 @@ import gc._4.pr2.grupo1.entity.Pedidos;
 
 public interface PedidosRepository extends JpaRepository<Pedidos, Long> {
 
+	
+
 }
