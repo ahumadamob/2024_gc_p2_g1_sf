@@ -4,15 +4,15 @@ public class ResponseDTO <T> {
 	private boolean status; 
 	private String message;
 	private T data;
-	private int cantidadItems;
 	
 	
-	public ResponseDTO(boolean status, String message, T data, int cantidadItems) {
+	
+	public ResponseDTO(boolean status, String message, T data) {
 		super();
 		this.status = status;
 		this.message = message;
 		this.data = data;
-		this.cantidadItems = cantidadItems;
+		
 		
 		
 	}
@@ -45,14 +45,6 @@ public class ResponseDTO <T> {
 		this.data = data;
 	}
 
-	public int getCantidadItems() {
-		return cantidadItems;
-	}
-
-	public void setCantidadItems(int cantidadItems) {
-		this.cantidadItems = cantidadItems;
-	}
-
-		
+	
 	
 }

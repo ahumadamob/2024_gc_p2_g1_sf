@@ -50,16 +50,7 @@ public class PedidosServiceImp implements IPedidosService {
 		
 	}
 	
-	@Override
-	public boolean cantidadItems(Long id) {
-		if (id == 0) {
-			return false;
-		}else {
-			return repo.findById(id);
-		}	
-		
-	}
-
+	
 	
 	
 }	

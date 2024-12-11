@@ -143,16 +143,27 @@ public class PedidosController {
 	public ResponseDTO <Pedidos> crearPedidos(@RequestBody Pedidos pedidosDesdePostman){
 		ResponseDTO<Pedidos> dto=new ResponseDTO<>();
 		
-		if(service.exists(pedidosDesdePostman.getId())){
-			dto.setStatus(false);
-			dto.setMessage("La cantidad de productos solicitados debe ser mayor a 0 ,");
-			dto.setData(null);
-		}else {
-			dto.setStatus(true);
-			dto.setMessage("Pedido creado exitosamente.");
-			dto.setData(service.guardar(pedidosDesdePostman));
-		}
-		return dto;
+	
+	    if (service.exists(pedidosDesdePostman.getId())) {
+	        dto.setStatus(false);
+	        dto.setMessage("El pedido ya existe.");
+	        dto.setData(null);
+	        return dto;
+	    }
+
+	 
+	    if (pedidosDesdePostman.getCantidadItems() <= 0) {
+	        dto.setStatus(false);
+	        dto.setMessage("La cantidad de productos solicitados debe ser mayor a 0.");
+	        dto.setData(null);
+	        return dto;
+	    }
+
+	    dto.setStatus(true);
+	    dto.setMessage("Pedido creado exitosamente.");
+	    dto.setData(service.guardar(pedidosDesdePostman));
+
+	    return dto;
 	}
 		
 }
